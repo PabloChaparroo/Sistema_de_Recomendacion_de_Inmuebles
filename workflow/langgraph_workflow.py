@@ -4,7 +4,7 @@ Orquesta consultas difusas, recomendaciones y explicaciones
 """
 
 from typing import TypedDict, Optional, List, Dict, Any
-from housing_frames import calcular_score_propiedad, UserFrame
+from models.housing_frames import calcular_score_propiedad, UserFrame
 from database.neo4j_connector import Neo4jConnector
 import os
 

@@ -211,12 +211,14 @@ with gr.Blocks(theme=gr.themes.Soft(), title="Sistema de Recomendación de Inmue
             
         with gr.Column(scale=1):
             gr.Markdown("### 📋 Seleccionar Usuario Existente")
-            usuario_dropdown = gr.Dropdown(
-                label="Usuarios disponibles",
-                choices=obtener_usuarios(),
-                interactive=True,
-                scale=2
-            )
+            with gr.Row():
+                usuario_dropdown = gr.Dropdown(
+                    label="Usuarios disponibles",
+                    choices=obtener_usuarios(),
+                    interactive=True,
+                    scale=3
+                )
+                btn_refrescar = gr.Button("🔄", scale=1, size="sm")
             btn_seleccionar = gr.Button("✅ Seleccionar", variant="secondary")
     
     # Mensaje de estado del usuario
@@ -312,6 +314,9 @@ with gr.Blocks(theme=gr.themes.Soft(), title="Sistema de Recomendación de Inmue
         fn=crear_usuario,
         inputs=[nombre_nuevo],
         outputs=[estado_usuario, usuario_dropdown, usuario_state]
+    ).then(
+        fn=lambda: gr.update(choices=obtener_usuarios()),
+        outputs=[usuario_dropdown]
     )
     
     # Seleccionar usuario
@@ -319,6 +324,12 @@ with gr.Blocks(theme=gr.themes.Soft(), title="Sistema de Recomendación de Inmue
         fn=seleccionar_usuario,
         inputs=[usuario_dropdown],
         outputs=[estado_usuario, usuario_state]
+    )
+    
+    # Refrescar lista de usuarios
+    btn_refrescar.click(
+        fn=lambda: gr.update(choices=obtener_usuarios()),
+        outputs=[usuario_dropdown]
     )
     
     # Consultar (usando el usuario actual)

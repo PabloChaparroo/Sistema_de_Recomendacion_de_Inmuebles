@@ -2,17 +2,115 @@
 # Instalar con: pip install -r requirements.txt
 
 # === CORE ===
-# Neo4j - Base de datos de grafos
-neo4j>=5.0.0
+python-dotenv
+neo4j
+langchain
+langchain-community
+langchain-core
+langchain-classic
+langchain-text-splitters
+langgraph
+langgraph-checkpoint
+langgraph-prebuilt
+langgraph-sdk
+huggingface-hub
+gradio
+gradio-client
 
-# LangChain + HuggingFace - IA Generativa
-langchain>=0.1.0
-langchain-community>=0.0.20
-huggingface-hub>=0.20.0
+# === Framework Web ===
+fastapi
+uvicorn
+starlette
+jinja2
+python-multipart
 
-# Gradio - Interfaz web
-gradio>=4.0.0
+# === HTTP & Networking ===
+httpx
+httpcore
+httpx-sse
+websockets
+aiohttp
+aiofiles
+anyio
+certifi
+requests
+requests-toolbelt
 
-# === UTILIDADES ===
-python-dotenv>=1.0.0
-pandas>=2.0.0  # Para cargar datos desde alquiler_inmuebles.csv
+# === Data Processing ===
+pandas
+numpy
+pydantic
+pydantic-core
+pydantic-settings
+sqlalchemy
+dataclasses-json
+
+# === Utilities ===
+typing-extensions
+typing-inspection
+annotated-types
+annotated-doc
+packaging
+pyyaml
+tomlkit
+jsonpatch
+jsonpointer
+tenacity
+filelock
+fsspec
+tqdm
+click
+typer
+typer-slim
+rich
+semantic-version
+safehttpx
+ruff
+
+# === Compression & Encoding ===
+brotli
+orjson
+ormsgpack
+zstandard
+xxhash
+
+# === Async & Networking Support ===
+aiohappyeyeballs
+aiosignal
+attrs
+frozenlist
+multidict
+propcache
+yarl
+h11
+idna
+sniffio
+urllib3
+charset-normalizer
+
+# === AI & ML ===
+langsmith
+marshmallow
+mypy-extensions
+shellingham
+hf-xet
+groovy
+
+# === Media Processing ===
+pillow
+pydub
+ffmpy
+audioop-lts
+
+# === Date & Time ===
+python-dateutil
+pytz
+tzdata
+
+# === Other ===
+greenlet
+markdown-it-py
+mdurl
+pygments
+six
+colorama
