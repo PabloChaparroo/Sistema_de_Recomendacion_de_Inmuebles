@@ -1,0 +1,18 @@
+# Dependencias del Sistema de Recomendación de Inmuebles
+# Instalar con: pip install -r requirements.txt
+
+# === CORE ===
+# Neo4j - Base de datos de grafos
+neo4j>=5.0.0
+
+# LangChain + HuggingFace - IA Generativa
+langchain>=0.1.0
+langchain-community>=0.0.20
+huggingface-hub>=0.20.0
+
+# Gradio - Interfaz web
+gradio>=4.0.0
+
+# === UTILIDADES ===
+python-dotenv>=1.0.0
+pandas>=2.0.0  # Para cargar datos desde alquiler_inmuebles.csv
