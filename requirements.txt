@@ -7,7 +7,7 @@ neo4j
 langchain
 langchain-community
 langchain-core
-langchain-classic
+langchain-ollama
 langchain-text-splitters
 langgraph
 langgraph-checkpoint
