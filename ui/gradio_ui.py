@@ -4,8 +4,31 @@ Permite consultas en lenguaje natural con IA + Lógica Difusa
 """
 
 import gradio as gr
+import re
+import webbrowser
+import json
+import os
 from workflow.langgraph_workflow import ejecutar_consulta, LANGCHAIN_DISPONIBLE
 from database.neo4j_connector import Neo4jConnector
+from geocoding.geocoder import Geocoder
+from geocoding.map_generator import MapGenerator
+
+# Cargar caché de coordenadas al inicio (solo una vez)
+CACHE_COORDENADAS = None
+def cargar_cache_coordenadas():
+    """Carga el caché de coordenadas pre-calculadas"""
+    global CACHE_COORDENADAS
+    if CACHE_COORDENADAS is None:
+        cache_file = 'data/coordenadas_cache.json'
+        if os.path.exists(cache_file):
+            with open(cache_file, 'r', encoding='utf-8') as f:
+                CACHE_COORDENADAS = json.load(f)
+            print(f"✅ Caché de coordenadas cargado: {len(CACHE_COORDENADAS)} propiedades")
+        else:
+            CACHE_COORDENADAS = {}
+            print(f"⚠️  Caché no encontrado: {cache_file}")
+            print(f"   Ejecuta: python generar_coordenadas_cache.py")
+    return CACHE_COORDENADAS
 
 # Variable global para usuario actual
 usuario_actual = None
@@ -100,6 +123,196 @@ def registrar_click_propiedad(usuario: str, nombre_propiedad: str):
         connector.close()
         return f"❌ Error: {e}"
 
+def buscar_propiedades_cercanas(pregunta: str, usuario: str):
+    """
+    Detecta búsquedas de proximidad y genera mapa con propiedades cercanas
+    
+    Args:
+        pregunta: Consulta del usuario
+        usuario: Usuario actual
+        
+    Returns:
+        tuple: (mensaje_respuesta, info_tecnica) o None si no es búsqueda de proximidad
+    """
+    # Patrones para detectar búsquedas de proximidad (MUY ESPECÍFICOS)
+    patrones_proximidad = [
+        r'\bcerca\s+(?:de|del|al)\s+(.+?)(?:\?|$)',
+        r'\bcercanas?\s+(?:a|al|del)\s+(.+?)(?:\?|$)',
+        r'^cercanas?\s+(?:a|al|del)\s+(.+?)(?:\?|$)',  # Al inicio de frase
+        r'(?:a\s+)?(\d+)\s*km\s+(?:de|del)\s+(.+?)(?:\?|$)',
+        r'\bproximidad\s+(?:de|del|al)\s+(.+?)(?:\?|$)',
+        r'\balrededor\s+(?:de|del)\s+(.+?)(?:\?|$)',
+    ]
+    
+    poi_nombre = None
+    max_distancia_km = 5.0  # Default
+    
+    for patron in patrones_proximidad:
+        match = re.search(patron, pregunta, re.IGNORECASE)
+        if match:
+            if patron.startswith(r'(?:a\s+)?(\d+)'):  # Patrón con distancia específica
+                max_distancia_km = float(match.group(1))
+                poi_nombre = match.group(2).strip()
+            else:
+                poi_nombre = match.group(1).strip()
+            break
+    
+    if not poi_nombre:
+        return None
+    
+    # Limpiar nombre del POI (quitar signos de puntuación finales)
+    poi_nombre = poi_nombre.rstrip('?.,!').strip()
+    
+    # Agregar "Mendoza, Argentina" si no está incluido para mejor geocoding
+    if "mendoza" not in poi_nombre.lower() and "argentina" not in poi_nombre.lower():
+        poi_nombre_completo = f"{poi_nombre}, Mendoza, Argentina"
+    else:
+        poi_nombre_completo = poi_nombre
+    
+    try:
+        # 1. Geocodificar el POI
+        print(f"🗺️  Geocodificando POI: {poi_nombre_completo}")
+        geocoder = Geocoder()
+        poi_coords = geocoder.geocode_poi(poi_nombre_completo)
+        
+        if not poi_coords:
+            return (
+                f"❌ No se pudo encontrar la ubicación: **{poi_nombre}**\n\n"
+                f"💡 Intenta con nombres más específicos como:\n"
+                f"- Parque General San Martín\n"
+                f"- Plaza Independencia\n"
+                f"- Universidad Nacional de Cuyo",
+                ""
+            )
+        
+        # 2. Cargar propiedades desde caché (INSTANTÁNEO)
+        cache = cargar_cache_coordenadas()
+        
+        if not cache:
+            return (
+                f"❌ No hay caché de coordenadas disponible\n\n"
+                f"💡 Para habilitar búsquedas rápidas de proximidad:\n"
+                f"1. Ejecuta: `python generar_coordenadas_cache.py`\n"
+                f"2. Espera 20-30 minutos (se hace solo UNA VEZ)\n"
+                f"3. Las búsquedas serán instantáneas para siempre\n\n"
+                f"⚠️  Sin caché, cada búsqueda toma 3-5 minutos",
+                ""
+            )
+        
+        # 3. Filtrar propiedades por distancia (RÁPIDO - sin llamadas API)
+        propiedades_cercanas = []
+        
+        print(f"📊 Analizando {len(cache)} propiedades desde caché...")
+        
+        for idx, prop_data in cache.items():
+            prop_coords = (prop_data['lat'], prop_data['lon'])
+            
+            # Calcular distancia
+            distancia = geocoder.haversine_distance(poi_coords, prop_coords)
+            
+            if distancia <= max_distancia_km:
+                propiedades_cercanas.append({
+                    'nombre': f"Propiedad #{idx}",
+                    'precio': prop_data['precio'],
+                    'habitaciones': prop_data['habitaciones'],
+                    'ubicacion': prop_data['ubicacion'],
+                    'tipo': prop_data['tipo'],
+                    'ambientes': prop_data.get('ambientes', 1),
+                    'lat': prop_data['lat'],  # Para MapGenerator
+                    'lon': prop_data['lon'],  # Para MapGenerator
+                    'distance_km': distancia  # Para MapGenerator
+                })
+        
+        # Ordenar por distancia
+        propiedades_cercanas.sort(key=lambda x: x['distance_km'])
+        
+        if not propiedades_cercanas:
+            return (
+                f"❌ No se encontraron propiedades dentro de {max_distancia_km} km de **{poi_nombre}**\n\n"
+                f"📍 Coordenadas encontradas: {poi_coords}\n"
+                f"💡 Intenta aumentar el radio de búsqueda",
+                f"**Geocodificación exitosa:**\n- POI: {poi_nombre}\n- Coords: {poi_coords}\n"
+                f"- Propiedades analizadas: {len(cache)}\n"
+                f"- Propiedades dentro del radio: 0"
+            )
+        
+        # 4. Generar mapa
+        print(f"🗺️  Generando mapa con {len(propiedades_cercanas)} propiedades")
+        map_gen = MapGenerator()
+        mapa_path = map_gen.create_map(propiedades_cercanas, poi_coords, poi_nombre)
+        
+        # 5. Abrir mapa en navegador
+        webbrowser.open(f"file:///{mapa_path}")
+        
+        # 6. Registrar interacciones en Neo4j (VIEWED para las top 10)
+        connector = Neo4jConnector()
+        try:
+            with connector.get_session() as session:
+                for prop in propiedades_cercanas[:10]:
+                    try:
+                        session.run("""
+                            MATCH (u:User {name: $usuario})
+                            MATCH (p:Property {name: $prop_nombre})
+                            MERGE (u)-[v:VIEWED]->(p)
+                            ON CREATE SET v.count = 1, v.last_viewed = datetime()
+                            ON MATCH SET v.count = v.count + 1, v.last_viewed = datetime()
+                        """, usuario=usuario, prop_nombre=prop['nombre'])
+                    except:
+                        pass
+                
+                # Registrar preferencia por búsqueda de proximidad
+                session.run("""
+                    MATCH (u:User {name: $usuario})
+                    MERGE (u)-[p:PREFERS_AMENITY]->(a:Amenity {name: 'cerca_de_poi'})
+                    ON CREATE SET p.count = 1
+                    ON MATCH SET p.count = p.count + 1
+                """, usuario=usuario)
+        except:
+            pass
+        finally:
+            connector.close()
+        
+        # 7. Crear respuesta
+        respuesta = f"## 🗺️ Propiedades cerca de: **{poi_nombre}**\n\n"
+        respuesta += f"📍 Radio de búsqueda: **{max_distancia_km} km**\n"
+        respuesta += f"✅ Encontradas: **{len(propiedades_cercanas)} propiedades**\n\n"
+        respuesta += f"🌐 **Mapa interactivo generado** (se abrió en tu navegador)\n\n"
+        respuesta += "---\n\n### 📋 Propiedades más cercanas:\n\n"
+        
+        for i, prop in enumerate(propiedades_cercanas[:10], 1):
+            respuesta += f"**{i}. {prop['nombre']}**\n"
+            respuesta += f"   - 📏 Distancia: {prop['distance_km']:.2f} km\n"
+            respuesta += f"   - 💰 Precio: ${prop['precio']:,}\n"
+            respuesta += f"   - 🛏️ Habitaciones: {prop['habitaciones']}\n"
+            respuesta += f"   - 📍 Ubicación: {prop['ubicacion']}\n\n"
+        
+        if len(propiedades_cercanas) > 10:
+            respuesta += f"\n*...y {len(propiedades_cercanas) - 10} propiedades más (ver en el mapa)*\n"
+        
+        # Info técnica
+        info_tecnica = f"### 🔧 Detalles Técnicos\n\n"
+        info_tecnica += f"**Geocodificación:**\n"
+        info_tecnica += f"- POI: {poi_nombre}\n"
+        info_tecnica += f"- Coordenadas: {poi_coords}\n"
+        info_tecnica += f"- API: OpenStreetMap Nominatim\n\n"
+        info_tecnica += f"**Filtrado:**\n"
+        info_tecnica += f"- Propiedades en caché: {len(cache)}\n"
+        info_tecnica += f"- Dentro de radio: {len(propiedades_cercanas)}\n"
+        info_tecnica += f"- Radio máximo: {max_distancia_km} km\n"
+        info_tecnica += f"- Tiempo de búsqueda: < 1 segundo (caché)\n\n"
+        info_tecnica += f"**Mapa:**\n"
+        info_tecnica += f"- Archivo: {mapa_path}\n"
+        info_tecnica += f"- Librería: Folium\n"
+        info_tecnica += f"- Marcadores: {len(propiedades_cercanas) + 1}\n"
+        
+        return (respuesta, info_tecnica)
+    
+    except Exception as e:
+        return (
+            f"❌ Error al procesar búsqueda de proximidad: {e}",
+            f"**Error técnico:** {type(e).__name__}\n{str(e)}"
+        )
+
 def procesar_consulta(pregunta: str, usuario: str, mostrar_detalles: bool = True):
     """
     Procesa consulta del usuario y retorna respuesta + explicación
@@ -120,7 +333,17 @@ def procesar_consulta(pregunta: str, usuario: str, mostrar_detalles: bool = True
         return "⚠️ Por favor ingresa una consulta", ""
     
     try:
-        # Ejecutar flujo LangGraph con usuario
+        # PRIMERO: Detectar si es búsqueda de proximidad (mapas)
+        resultado_proximidad = buscar_propiedades_cercanas(pregunta, usuario)
+        if resultado_proximidad:
+            respuesta, explicacion = resultado_proximidad
+            if not mostrar_detalles:
+                explicacion = ""
+            elif explicacion:
+                explicacion = f"👤 **Usuario activo:** {usuario}\n\n" + explicacion
+            return respuesta, explicacion
+        
+        # SEGUNDO: Flujo normal con LangGraph
         resultado = ejecutar_consulta(pregunta, usuario=usuario)
         
         # Registrar la búsqueda en Neo4j (para que los demonios aprendan)
@@ -286,6 +509,9 @@ with gr.Blocks(theme=gr.themes.Soft(), title="Sistema de Recomendación de Inmue
             ["Propiedades con 3 habitaciones", False],
             ["¿Qué barrios tienen más propiedades?", True],
             ["Recomiéndame algo en Godoy Cruz", True],
+            ["Quiero una propiedad cerca del Parque San Martín", True],
+            ["Propiedades cercanas a Plaza Independencia", True],
+            ["Busca inmuebles a 3 km de la Universidad Nacional de Cuyo", True],
         ],
         inputs=[pregunta, mostrar_detalles],
         label="💡 Ejemplos de consultas"
@@ -385,7 +611,7 @@ if __name__ == "__main__":
     print("\n📌 Para compartir públicamente, usa: share=True en launch()")
     print("="*60 + "\n")
     
-    demo.queue()  # Habilitar cola para mejor rendimiento
+    # demo.queue() deshabilitado por incompatibilidad con Python 3.14
     demo.launch(
         server_name="127.0.0.1",  # Solo localhost (más seguro)
         server_port=7860,

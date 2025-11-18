@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_fc2a983fd859114b3d0d8a24ebe4faeb {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_fc2a983fd859114b3d0d8a24ebe4faeb" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_fc2a983fd859114b3d0d8a24ebe4faeb = L.map(
+                "map_fc2a983fd859114b3d0d8a24ebe4faeb",
+                {
+                    center: [-32.8759472, -68.8415226],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_708dc0bb8abf3f3d3917a55c0d0ed1e8 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_708dc0bb8abf3f3d3917a55c0d0ed1e8.addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var marker_b92438a9904b21dfd8b8f76b1d40e59e = L.marker(
+                [-32.8759472, -68.8415226],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_0a21e9d854e8486bd3d129820b69d571 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_797efb542a3e9d62047d5fde439f516f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b7debc288735eb58786c2098bdbcdb9a = $(`<div id="html_b7debc288735eb58786c2098bdbcdb9a" style="width: 100.0%; height: 100.0%;"><b>📍 parque Central</b></div>`)[0];
+                popup_797efb542a3e9d62047d5fde439f516f.setContent(html_b7debc288735eb58786c2098bdbcdb9a);
+            
+        
+
+        marker_b92438a9904b21dfd8b8f76b1d40e59e.bindPopup(popup_797efb542a3e9d62047d5fde439f516f)
+        ;
+
+        
+    
+    
+                marker_b92438a9904b21dfd8b8f76b1d40e59e.setIcon(icon_0a21e9d854e8486bd3d129820b69d571);
+            
+    
+            var circle_8dc5bbabfeca8392980d52ad1da3475a = L.circle(
+                [-32.8759472, -68.8415226],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5000, "stroke": true, "weight": 3}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var marker_8a486b3126f09000d17742d8fb34d53e = L.marker(
+                [-32.8772545, -68.8371366],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_11c573438a2e7bbca97eb1570211f332 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_0916beea4a57d30eea11ebe9d6ef764a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2d60a21e5325fff5130c3fa5f15934c5 = $(`<div id="html_2d60a21e5325fff5130c3fa5f15934c5" style="width: 100.0%; height: 100.0%;">             <b>🏠 Propiedad #1</b><br>             <b>Precio:</b> $0<br>             <b>Habitaciones:</b> 0<br>             <b>📏 Distancia:</b> 0.43 km             </div>`)[0];
+                popup_0916beea4a57d30eea11ebe9d6ef764a.setContent(html_2d60a21e5325fff5130c3fa5f15934c5);
+            
+        
+
+        marker_8a486b3126f09000d17742d8fb34d53e.bindPopup(popup_0916beea4a57d30eea11ebe9d6ef764a)
+        ;
+
+        
+    
+    
+                marker_8a486b3126f09000d17742d8fb34d53e.setIcon(icon_11c573438a2e7bbca97eb1570211f332);
+            
+    
+            var marker_33ab4477b573a5cd2ae73b19d94b16ec = L.marker(
+                [-32.8714867, -68.8345089],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_958119b3d8fe3b6ac54f6dac5c6935cd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_eaac16d52ea503037230a56a1647665a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9bfe4e8ad7b91837e12856a38c5e13bd = $(`<div id="html_9bfe4e8ad7b91837e12856a38c5e13bd" style="width: 100.0%; height: 100.0%;">             <b>🏠 Propiedad #2</b><br>             <b>Precio:</b> $0<br>             <b>Habitaciones:</b> 0<br>             <b>📏 Distancia:</b> 0.82 km             </div>`)[0];
+                popup_eaac16d52ea503037230a56a1647665a.setContent(html_9bfe4e8ad7b91837e12856a38c5e13bd);
+            
+        
+
+        marker_33ab4477b573a5cd2ae73b19d94b16ec.bindPopup(popup_eaac16d52ea503037230a56a1647665a)
+        ;
+
+        
+    
+    
+                marker_33ab4477b573a5cd2ae73b19d94b16ec.setIcon(icon_958119b3d8fe3b6ac54f6dac5c6935cd);
+            
+    
+            var marker_a7b1589c0a9d81df32ba1e4ad632766d = L.marker(
+                [-32.8823626, -68.8473296],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_c94f612f21f99c88f96f3579e9dc3bc1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4f73f8dc4c5481eb4f1169214a2c37d2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_60bd1664625e26da3ae8e48d8e9c9778 = $(`<div id="html_60bd1664625e26da3ae8e48d8e9c9778" style="width: 100.0%; height: 100.0%;">             <b>🏠 Propiedad #3</b><br>             <b>Precio:</b> $0<br>             <b>Habitaciones:</b> 0<br>             <b>📏 Distancia:</b> 0.90 km             </div>`)[0];
+                popup_4f73f8dc4c5481eb4f1169214a2c37d2.setContent(html_60bd1664625e26da3ae8e48d8e9c9778);
+            
+        
+
+        marker_a7b1589c0a9d81df32ba1e4ad632766d.bindPopup(popup_4f73f8dc4c5481eb4f1169214a2c37d2)
+        ;
+
+        
+    
+    
+                marker_a7b1589c0a9d81df32ba1e4ad632766d.setIcon(icon_c94f612f21f99c88f96f3579e9dc3bc1);
+            
+    
+            var marker_7a0ae312ea9929089d4d202b6886d24e = L.marker(
+                [-32.8688378, -68.8537513],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_51fd0b3b94c8ae9e57234cc7319fe719 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_407752abd8c004c064532963b914579f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f34ef5454b37f33545462589512dc5e6 = $(`<div id="html_f34ef5454b37f33545462589512dc5e6" style="width: 100.0%; height: 100.0%;">             <b>🏠 Propiedad #4</b><br>             <b>Precio:</b> $0<br>             <b>Habitaciones:</b> 0<br>             <b>📏 Distancia:</b> 1.39 km             </div>`)[0];
+                popup_407752abd8c004c064532963b914579f.setContent(html_f34ef5454b37f33545462589512dc5e6);
+            
+        
+
+        marker_7a0ae312ea9929089d4d202b6886d24e.bindPopup(popup_407752abd8c004c064532963b914579f)
+        ;
+
+        
+    
+    
+                marker_7a0ae312ea9929089d4d202b6886d24e.setIcon(icon_51fd0b3b94c8ae9e57234cc7319fe719);
+            
+    
+            var marker_abeb8892deab1d75a21f5cae44b6a0e8 = L.marker(
+                [-32.8910283, -68.8396067],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_b8e013f3ec37689702b9d678179a047b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_87be5de53e389b96b619a07af79dede2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a69a3714456df7b43eda46b2667dd4aa = $(`<div id="html_a69a3714456df7b43eda46b2667dd4aa" style="width: 100.0%; height: 100.0%;">             <b>🏠 Propiedad #5</b><br>             <b>Precio:</b> $0<br>             <b>Habitaciones:</b> 0<br>             <b>📏 Distancia:</b> 1.69 km             </div>`)[0];
+                popup_87be5de53e389b96b619a07af79dede2.setContent(html_a69a3714456df7b43eda46b2667dd4aa);
+            
+        
+
+        marker_abeb8892deab1d75a21f5cae44b6a0e8.bindPopup(popup_87be5de53e389b96b619a07af79dede2)
+        ;
+
+        
+    
+    
+                marker_abeb8892deab1d75a21f5cae44b6a0e8.setIcon(icon_b8e013f3ec37689702b9d678179a047b);
+            
+    
+            var marker_4d635d50543229c5ade99bf6e659bef2 = L.marker(
+                [-32.8908937, -68.8369228],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_ce382c53b0447978f8ac2a66ba7f56e5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_185db78ff4769b0a354275fe36db3691 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_afa795bc64b994de552fe95009d22ab7 = $(`<div id="html_afa795bc64b994de552fe95009d22ab7" style="width: 100.0%; height: 100.0%;">             <b>🏠 Propiedad #6</b><br>             <b>Precio:</b> $0<br>             <b>Habitaciones:</b> 0<br>             <b>📏 Distancia:</b> 1.72 km             </div>`)[0];
+                popup_185db78ff4769b0a354275fe36db3691.setContent(html_afa795bc64b994de552fe95009d22ab7);
+            
+        
+
+        marker_4d635d50543229c5ade99bf6e659bef2.bindPopup(popup_185db78ff4769b0a354275fe36db3691)
+        ;
+
+        
+    
+    
+                marker_4d635d50543229c5ade99bf6e659bef2.setIcon(icon_ce382c53b0447978f8ac2a66ba7f56e5);
+            
+    
+            var marker_9f2ff2103fc740bb732ca53c016a126f = L.marker(
+                [-32.8940845, -68.8461015],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_51be0faf55c2e8db0c6c33cc6b0d2a7b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2b9a4d13ed9a18426c8195aa38b573c0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7c85c2dc868af0c817dc6449f03f9c6b = $(`<div id="html_7c85c2dc868af0c817dc6449f03f9c6b" style="width: 100.0%; height: 100.0%;">             <b>🏠 Propiedad #7</b><br>             <b>Precio:</b> $0<br>             <b>Habitaciones:</b> 0<br>             <b>📏 Distancia:</b> 2.06 km             </div>`)[0];
+                popup_2b9a4d13ed9a18426c8195aa38b573c0.setContent(html_7c85c2dc868af0c817dc6449f03f9c6b);
+            
+        
+
+        marker_9f2ff2103fc740bb732ca53c016a126f.bindPopup(popup_2b9a4d13ed9a18426c8195aa38b573c0)
+        ;
+
+        
+    
+    
+                marker_9f2ff2103fc740bb732ca53c016a126f.setIcon(icon_51be0faf55c2e8db0c6c33cc6b0d2a7b);
+            
+    
+            var marker_9e1cb91ba302de6c0e54c8860ecda93a = L.marker(
+                [-32.9008948, -68.8392209],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_cab23b12a0c3dd2ad6f2324066ba4d68 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a36b6a18b23686470ac2771b02862d03 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d5b455b2cd3caa9d450185d89141471c = $(`<div id="html_d5b455b2cd3caa9d450185d89141471c" style="width: 100.0%; height: 100.0%;">             <b>🏠 Propiedad #8</b><br>             <b>Precio:</b> $0<br>             <b>Habitaciones:</b> 0<br>             <b>📏 Distancia:</b> 2.78 km             </div>`)[0];
+                popup_a36b6a18b23686470ac2771b02862d03.setContent(html_d5b455b2cd3caa9d450185d89141471c);
+            
+        
+
+        marker_9e1cb91ba302de6c0e54c8860ecda93a.bindPopup(popup_a36b6a18b23686470ac2771b02862d03)
+        ;
+
+        
+    
+    
+                marker_9e1cb91ba302de6c0e54c8860ecda93a.setIcon(icon_cab23b12a0c3dd2ad6f2324066ba4d68);
+            
+    
+            var marker_ccb927cc5dcba9a3e5330e6c44bfe893 = L.marker(
+                [-32.9027107, -68.8426868],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_560053c089c3bb5956f27ec2b242abad = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6fe4ad8e99d885e8d89049900f1f7335 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_af4663c9437d3c575e7b00ae31af3136 = $(`<div id="html_af4663c9437d3c575e7b00ae31af3136" style="width: 100.0%; height: 100.0%;">             <b>🏠 Propiedad #9</b><br>             <b>Precio:</b> $0<br>             <b>Habitaciones:</b> 0<br>             <b>📏 Distancia:</b> 2.98 km             </div>`)[0];
+                popup_6fe4ad8e99d885e8d89049900f1f7335.setContent(html_af4663c9437d3c575e7b00ae31af3136);
+            
+        
+
+        marker_ccb927cc5dcba9a3e5330e6c44bfe893.bindPopup(popup_6fe4ad8e99d885e8d89049900f1f7335)
+        ;
+
+        
+    
+    
+                marker_ccb927cc5dcba9a3e5330e6c44bfe893.setIcon(icon_560053c089c3bb5956f27ec2b242abad);
+            
+    
+            var marker_4b6319d3d25da10dbdff185e5947ca08 = L.marker(
+                [-32.8534748, -68.8655718],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_370c495225972ff8ff6e8a9a24d8a66e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3b211016dc5ecc43b87af34add1b9965 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ec5a86c4801084d9be0c9a37da4e5e2c = $(`<div id="html_ec5a86c4801084d9be0c9a37da4e5e2c" style="width: 100.0%; height: 100.0%;">             <b>🏠 Propiedad #10</b><br>             <b>Precio:</b> $0<br>             <b>Habitaciones:</b> 0<br>             <b>📏 Distancia:</b> 3.36 km             </div>`)[0];
+                popup_3b211016dc5ecc43b87af34add1b9965.setContent(html_ec5a86c4801084d9be0c9a37da4e5e2c);
+            
+        
+
+        marker_4b6319d3d25da10dbdff185e5947ca08.bindPopup(popup_3b211016dc5ecc43b87af34add1b9965)
+        ;
+
+        
+    
+    
+                marker_4b6319d3d25da10dbdff185e5947ca08.setIcon(icon_370c495225972ff8ff6e8a9a24d8a66e);
+            
+    
+            var marker_b5a5e14af7f5ef68ad9fd26fb810c127 = L.marker(
+                [-32.910515, -68.8401955],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_fabb8fc7a6740ffb9437cf39f50b1667 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_68b34f59303e8b51e14aea8f58532a64 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ad2a726fb92639ffcfc66e7682958aea = $(`<div id="html_ad2a726fb92639ffcfc66e7682958aea" style="width: 100.0%; height: 100.0%;">             <b>🏠 Propiedad #11</b><br>             <b>Precio:</b> $0<br>             <b>Habitaciones:</b> 0<br>             <b>📏 Distancia:</b> 3.85 km             </div>`)[0];
+                popup_68b34f59303e8b51e14aea8f58532a64.setContent(html_ad2a726fb92639ffcfc66e7682958aea);
+            
+        
+
+        marker_b5a5e14af7f5ef68ad9fd26fb810c127.bindPopup(popup_68b34f59303e8b51e14aea8f58532a64)
+        ;
+
+        
+    
+    
+                marker_b5a5e14af7f5ef68ad9fd26fb810c127.setIcon(icon_fabb8fc7a6740ffb9437cf39f50b1667);
+            
+    
+            var marker_63b6f6cf6d4a47a6c947e99c6d92bd52 = L.marker(
+                [-32.9101213, -68.8288537],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_b2d7ef802506e77e8ce41eda558ab851 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2f7b20c438ae1681130fca5d30a74d5e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f56bc93004f222f48870d1c1bcb8c857 = $(`<div id="html_f56bc93004f222f48870d1c1bcb8c857" style="width: 100.0%; height: 100.0%;">             <b>🏠 Propiedad #12</b><br>             <b>Precio:</b> $0<br>             <b>Habitaciones:</b> 0<br>             <b>📏 Distancia:</b> 3.98 km             </div>`)[0];
+                popup_2f7b20c438ae1681130fca5d30a74d5e.setContent(html_f56bc93004f222f48870d1c1bcb8c857);
+            
+        
+
+        marker_63b6f6cf6d4a47a6c947e99c6d92bd52.bindPopup(popup_2f7b20c438ae1681130fca5d30a74d5e)
+        ;
+
+        
+    
+    
+                marker_63b6f6cf6d4a47a6c947e99c6d92bd52.setIcon(icon_b2d7ef802506e77e8ce41eda558ab851);
+            
+    
+            var marker_351307f5469578d09b62962792005fce = L.marker(
+                [-32.8657638, -68.8832238],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_7a60f3e775ff71b3b51407ba10779af8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_af46e269b38b912adb8030b4c074ba93 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_58839aa5281e7ae699af3bc31c61ef6e = $(`<div id="html_58839aa5281e7ae699af3bc31c61ef6e" style="width: 100.0%; height: 100.0%;">             <b>🏠 Propiedad #13</b><br>             <b>Precio:</b> $0<br>             <b>Habitaciones:</b> 0<br>             <b>📏 Distancia:</b> 4.06 km             </div>`)[0];
+                popup_af46e269b38b912adb8030b4c074ba93.setContent(html_58839aa5281e7ae699af3bc31c61ef6e);
+            
+        
+
+        marker_351307f5469578d09b62962792005fce.bindPopup(popup_af46e269b38b912adb8030b4c074ba93)
+        ;
+
+        
+    
+    
+                marker_351307f5469578d09b62962792005fce.setIcon(icon_7a60f3e775ff71b3b51407ba10779af8);
+            
+    
+            var marker_40e058c0370ed71bb324e82a1f5fa92b = L.marker(
+                [-32.9189516, -68.839604],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_ad2913d3b8527f09aaf0dcd6c73952b4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_84641e01c11529cf37e89354d91a624a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_90c6722486b5751ac0ad0c48a3c14f82 = $(`<div id="html_90c6722486b5751ac0ad0c48a3c14f82" style="width: 100.0%; height: 100.0%;">             <b>🏠 Propiedad #14</b><br>             <b>Precio:</b> $0<br>             <b>Habitaciones:</b> 0<br>             <b>📏 Distancia:</b> 4.79 km             </div>`)[0];
+                popup_84641e01c11529cf37e89354d91a624a.setContent(html_90c6722486b5751ac0ad0c48a3c14f82);
+            
+        
+
+        marker_40e058c0370ed71bb324e82a1f5fa92b.bindPopup(popup_84641e01c11529cf37e89354d91a624a)
+        ;
+
+        
+    
+    
+                marker_40e058c0370ed71bb324e82a1f5fa92b.setIcon(icon_ad2913d3b8527f09aaf0dcd6c73952b4);
+            
+    
+            var marker_21cdf4b7540990c5865f41f127c66731 = L.marker(
+                [-32.8382071, -68.8704042],
+                {
+}
+            ).addTo(map_fc2a983fd859114b3d0d8a24ebe4faeb);
+        
+    
+            var icon_e817726676638ca865ea95cf2cb5449a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "home",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_031beb5ffc6223f885db9ddd68ae92fa = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5f523b19b17ad1751af482086bf0c823 = $(`<div id="html_5f523b19b17ad1751af482086bf0c823" style="width: 100.0%; height: 100.0%;">             <b>🏠 Propiedad #15</b><br>             <b>Precio:</b> $0<br>             <b>Habitaciones:</b> 0<br>             <b>📏 Distancia:</b> 4.99 km             </div>`)[0];
+                popup_031beb5ffc6223f885db9ddd68ae92fa.setContent(html_5f523b19b17ad1751af482086bf0c823);
+            
+        
+
+        marker_21cdf4b7540990c5865f41f127c66731.bindPopup(popup_031beb5ffc6223f885db9ddd68ae92fa)
+        ;
+
+        
+    
+    
+                marker_21cdf4b7540990c5865f41f127c66731.setIcon(icon_e817726676638ca865ea95cf2cb5449a);
+            
+</script>
+</html>

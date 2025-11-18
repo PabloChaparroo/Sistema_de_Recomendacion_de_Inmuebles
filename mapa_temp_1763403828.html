@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_04dbc7f27afae08c4d4842aa5a9d22ba {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+                    bottom: 50px; right: 50px; width: 200px; 
+                    background-color: white; 
+                    border:2px solid grey; z-index:9999; 
+                    font-size:14px; padding: 10px;
+                    border-radius: 5px;">
+            <p style="margin: 0 0 5px 0;"><b>Leyenda</b></p>
+            <p style="margin: 3px 0;"><i class="fa fa-star" style="color:red"></i> Punto de Interés</p>
+            <p style="margin: 3px 0;"><i class="fa fa-home" style="color:green"></i> ≤ 1 km</p>
+            <p style="margin: 3px 0;"><i class="fa fa-building" style="color:blue"></i> 1-3 km</p>
+            <p style="margin: 3px 0;"><i class="fa fa-building" style="color:orange"></i> 3-5 km</p>
+        </div>
+        
+    
+            <div class="folium-map" id="map_04dbc7f27afae08c4d4842aa5a9d22ba" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_04dbc7f27afae08c4d4842aa5a9d22ba = L.map(
+                "map_04dbc7f27afae08c4d4842aa5a9d22ba",
+                {
+                    center: [-32.8916798, -68.8737056],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 13,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_8cc8d9b6f8e246d38efa2230de5b1f59 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_8cc8d9b6f8e246d38efa2230de5b1f59.addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+
+            var geocoderOpts_geocoder_476ad5646d25c62bf2e5719b66cc2a54 = {
+  "collapsed": false,
+  "position": "topright",
+  "defaultMarkGeocode": true,
+  "zoom": 11,
+  "provider": "nominatim",
+  "providerOptions": {
+},
+};
+
+            // note: geocoder name should start with lowercase
+            var geocoderName_geocoder_476ad5646d25c62bf2e5719b66cc2a54 = geocoderOpts_geocoder_476ad5646d25c62bf2e5719b66cc2a54["provider"];
+
+            var customGeocoder_geocoder_476ad5646d25c62bf2e5719b66cc2a54 = L.Control.Geocoder[ geocoderName_geocoder_476ad5646d25c62bf2e5719b66cc2a54 ](
+                geocoderOpts_geocoder_476ad5646d25c62bf2e5719b66cc2a54['providerOptions']
+            );
+            geocoderOpts_geocoder_476ad5646d25c62bf2e5719b66cc2a54["geocoder"] = customGeocoder_geocoder_476ad5646d25c62bf2e5719b66cc2a54;
+
+            L.Control.geocoder(
+                geocoderOpts_geocoder_476ad5646d25c62bf2e5719b66cc2a54
+            ).on('markgeocode', function(e) {
+                var zoom = geocoderOpts_geocoder_476ad5646d25c62bf2e5719b66cc2a54['zoom'] || map_04dbc7f27afae08c4d4842aa5a9d22ba.getZoom();
+                map_04dbc7f27afae08c4d4842aa5a9d22ba.setView(e.geocode.center, zoom);
+            }).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+
+        
+    
+            var marker_71f69f5edef586c64bbeb587d4d42a41 = L.marker(
+                [-32.8916798, -68.8737056],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_469718374ef3ac7b006f5d586055a672 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b88695450d9bf1b920774d80c164249d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_02512e010a508daaa605ad39555ce997 = $(`<div id="html_02512e010a508daaa605ad39555ce997" style="width: 100.0%; height: 100.0%;"><b>📍 parque san martín</b></div>`)[0];
+                popup_b88695450d9bf1b920774d80c164249d.setContent(html_02512e010a508daaa605ad39555ce997);
+            
+        
+
+        marker_71f69f5edef586c64bbeb587d4d42a41.bindPopup(popup_b88695450d9bf1b920774d80c164249d)
+        ;
+
+        
+    
+    
+            marker_71f69f5edef586c64bbeb587d4d42a41.bindTooltip(
+                `<div>
+                     parque san martín
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_71f69f5edef586c64bbeb587d4d42a41.setIcon(icon_469718374ef3ac7b006f5d586055a672);
+            
+    
+            var circle_06d4d4432a8de5c87bf184228163525b = L.circle(
+                [-32.8916798, -68.8737056],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5000, "stroke": true, "weight": 3}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+        var popup_258236265c2b4027c4a96ad943b3add8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a3685eb1d1fd87b73cde3cd6d577a93e = $(`<div id="html_a3685eb1d1fd87b73cde3cd6d577a93e" style="width: 100.0%; height: 100.0%;">Radio de 5km</div>`)[0];
+                popup_258236265c2b4027c4a96ad943b3add8.setContent(html_a3685eb1d1fd87b73cde3cd6d577a93e);
+            
+        
+
+        circle_06d4d4432a8de5c87bf184228163525b.bindPopup(popup_258236265c2b4027c4a96ad943b3add8)
+        ;
+
+        
+    
+    
+            var marker_36cdb2091510f448d89559c9b4886e35 = L.marker(
+                [-32.8898122, -68.8542189],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_2ae5ccdae9808dc0c2006faf9e57d5aa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1164a5d25ecd19545cc4cf99d7c0246d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e1d4d903cdd734153010d6f3344fa63e = $(`<div id="html_e1d4d903cdd734153010d6f3344fa63e" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #1</h4>                 <b>Dirección:</b> Quinta Sección<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $193,765,000<br>                 <b>Habitaciones:</b> 4<br>                 <b>Área:</b> 106 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">1.83 km</span>             </div>             </div>`)[0];
+                popup_1164a5d25ecd19545cc4cf99d7c0246d.setContent(html_e1d4d903cdd734153010d6f3344fa63e);
+            
+        
+
+        marker_36cdb2091510f448d89559c9b4886e35.bindPopup(popup_1164a5d25ecd19545cc4cf99d7c0246d)
+        ;
+
+        
+    
+    
+            marker_36cdb2091510f448d89559c9b4886e35.bindTooltip(
+                `<div>
+                     Propiedad #1 - 1.83km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_36cdb2091510f448d89559c9b4886e35.setIcon(icon_2ae5ccdae9808dc0c2006faf9e57d5aa);
+            
+    
+            var marker_9b4924947e6589922c131d04dd2b677c = L.marker(
+                [-32.8898122, -68.8542189],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_abd31c654d5adda9dbcdfe678a8ba07d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cb0269424fd800919c4faa29cd427921 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5ec350cd79192b4e305305791146db87 = $(`<div id="html_5ec350cd79192b4e305305791146db87" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #2</h4>                 <b>Dirección:</b> Quinta Sección<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $1,000,000<br>                 <b>Habitaciones:</b> 3<br>                 <b>Área:</b> 88 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">1.83 km</span>             </div>             </div>`)[0];
+                popup_cb0269424fd800919c4faa29cd427921.setContent(html_5ec350cd79192b4e305305791146db87);
+            
+        
+
+        marker_9b4924947e6589922c131d04dd2b677c.bindPopup(popup_cb0269424fd800919c4faa29cd427921)
+        ;
+
+        
+    
+    
+            marker_9b4924947e6589922c131d04dd2b677c.bindTooltip(
+                `<div>
+                     Propiedad #2 - 1.83km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9b4924947e6589922c131d04dd2b677c.setIcon(icon_abd31c654d5adda9dbcdfe678a8ba07d);
+            
+    
+            var marker_49c13a7156cbb5d80d43903271050fa8 = L.marker(
+                [-32.8894155, -68.8446177],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_55b8e5b2786ed20302ed3c34beb64cec = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_057241b8406572e603f2445152f2de7f = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7327026b0f5d8093081fbcdb87691476 = $(`<div id="html_7327026b0f5d8093081fbcdb87691476" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #3</h4>                 <b>Dirección:</b> Mendoza<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $430,000<br>                 <b>Habitaciones:</b> 3<br>                 <b>Área:</b> 48 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">2.73 km</span>             </div>             </div>`)[0];
+                popup_057241b8406572e603f2445152f2de7f.setContent(html_7327026b0f5d8093081fbcdb87691476);
+            
+        
+
+        marker_49c13a7156cbb5d80d43903271050fa8.bindPopup(popup_057241b8406572e603f2445152f2de7f)
+        ;
+
+        
+    
+    
+            marker_49c13a7156cbb5d80d43903271050fa8.bindTooltip(
+                `<div>
+                     Propiedad #3 - 2.73km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_49c13a7156cbb5d80d43903271050fa8.setIcon(icon_55b8e5b2786ed20302ed3c34beb64cec);
+            
+    
+            var marker_7b8db9ce4d00ae1c285140aeed57e7a4 = L.marker(
+                [-32.8894155, -68.8446177],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_0adcb4425d9313e92663cae1333cd1e8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9d4b6ccc5c967942ae7529777d42814d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_31d7b26fd3aa17c565e72bc557058a80 = $(`<div id="html_31d7b26fd3aa17c565e72bc557058a80" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #4</h4>                 <b>Dirección:</b> Mendoza<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $3,577,200<br>                 <b>Habitaciones:</b> 8<br>                 <b>Área:</b> 350 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">2.73 km</span>             </div>             </div>`)[0];
+                popup_9d4b6ccc5c967942ae7529777d42814d.setContent(html_31d7b26fd3aa17c565e72bc557058a80);
+            
+        
+
+        marker_7b8db9ce4d00ae1c285140aeed57e7a4.bindPopup(popup_9d4b6ccc5c967942ae7529777d42814d)
+        ;
+
+        
+    
+    
+            marker_7b8db9ce4d00ae1c285140aeed57e7a4.bindTooltip(
+                `<div>
+                     Propiedad #4 - 2.73km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7b8db9ce4d00ae1c285140aeed57e7a4.setIcon(icon_0adcb4425d9313e92663cae1333cd1e8);
+            
+    
+            var marker_27c5cd8fd087055982fb35b6f0e58468 = L.marker(
+                [-32.8894155, -68.8446177],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_e13255bba647780d4e2bd9c45c1215ff = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1de3b92386fae8f37144d22d11773fd0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_503ee862c9415299c82247fbd047490a = $(`<div id="html_503ee862c9415299c82247fbd047490a" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #5</h4>                 <b>Dirección:</b> Mendoza<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $600,000<br>                 <b>Habitaciones:</b> 3<br>                 <b>Área:</b> 75 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">2.73 km</span>             </div>             </div>`)[0];
+                popup_1de3b92386fae8f37144d22d11773fd0.setContent(html_503ee862c9415299c82247fbd047490a);
+            
+        
+
+        marker_27c5cd8fd087055982fb35b6f0e58468.bindPopup(popup_1de3b92386fae8f37144d22d11773fd0)
+        ;
+
+        
+    
+    
+            marker_27c5cd8fd087055982fb35b6f0e58468.bindTooltip(
+                `<div>
+                     Propiedad #5 - 2.73km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_27c5cd8fd087055982fb35b6f0e58468.setIcon(icon_e13255bba647780d4e2bd9c45c1215ff);
+            
+    
+            var marker_06aa7ab1e78ef85338ab0df43fc017cd = L.marker(
+                [-32.8894155, -68.8446177],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_f6d749da9836de4e4084f0eadc01c896 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fe53a50bc9e04f8ffafd70db5db77b62 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_247b854e4dae86ddfec2aed70d9d3bd6 = $(`<div id="html_247b854e4dae86ddfec2aed70d9d3bd6" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #6</h4>                 <b>Dirección:</b> Mendoza<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $900,000<br>                 <b>Habitaciones:</b> 4<br>                 <b>Área:</b> 75 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">2.73 km</span>             </div>             </div>`)[0];
+                popup_fe53a50bc9e04f8ffafd70db5db77b62.setContent(html_247b854e4dae86ddfec2aed70d9d3bd6);
+            
+        
+
+        marker_06aa7ab1e78ef85338ab0df43fc017cd.bindPopup(popup_fe53a50bc9e04f8ffafd70db5db77b62)
+        ;
+
+        
+    
+    
+            marker_06aa7ab1e78ef85338ab0df43fc017cd.bindTooltip(
+                `<div>
+                     Propiedad #6 - 2.73km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_06aa7ab1e78ef85338ab0df43fc017cd.setIcon(icon_f6d749da9836de4e4084f0eadc01c896);
+            
+    
+            var marker_03730c7b310bdc4756ec0c35187b65ce = L.marker(
+                [-32.8894155, -68.8446177],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_7284a8d4f5e52abb015c6ecd9d6784e3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7bb4926044be2b78a51f0da332502259 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_614e3018016649040f47974499704301 = $(`<div id="html_614e3018016649040f47974499704301" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #7</h4>                 <b>Dirección:</b> Mendoza<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $350,000<br>                 <b>Habitaciones:</b> 2<br>                 <b>Área:</b> 30 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">2.73 km</span>             </div>             </div>`)[0];
+                popup_7bb4926044be2b78a51f0da332502259.setContent(html_614e3018016649040f47974499704301);
+            
+        
+
+        marker_03730c7b310bdc4756ec0c35187b65ce.bindPopup(popup_7bb4926044be2b78a51f0da332502259)
+        ;
+
+        
+    
+    
+            marker_03730c7b310bdc4756ec0c35187b65ce.bindTooltip(
+                `<div>
+                     Propiedad #7 - 2.73km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_03730c7b310bdc4756ec0c35187b65ce.setIcon(icon_7284a8d4f5e52abb015c6ecd9d6784e3);
+            
+    
+            var marker_765ced2a73fb2d7b725d975e24fe5833 = L.marker(
+                [-32.8894155, -68.8446177],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_bf446260a582fd54322aa9924472debc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9c25af37fc2c6c6475d7075349661b71 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7226bde390846bfc5c8c9d57ef937c6a = $(`<div id="html_7226bde390846bfc5c8c9d57ef937c6a" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #8</h4>                 <b>Dirección:</b> Mendoza<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $1,700,000<br>                 <b>Habitaciones:</b> 2<br>                 <b>Área:</b> 270 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">2.73 km</span>             </div>             </div>`)[0];
+                popup_9c25af37fc2c6c6475d7075349661b71.setContent(html_7226bde390846bfc5c8c9d57ef937c6a);
+            
+        
+
+        marker_765ced2a73fb2d7b725d975e24fe5833.bindPopup(popup_9c25af37fc2c6c6475d7075349661b71)
+        ;
+
+        
+    
+    
+            marker_765ced2a73fb2d7b725d975e24fe5833.bindTooltip(
+                `<div>
+                     Propiedad #8 - 2.73km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_765ced2a73fb2d7b725d975e24fe5833.setIcon(icon_bf446260a582fd54322aa9924472debc);
+            
+    
+            var marker_56b2014272a1038df7b459aebd58d0e3 = L.marker(
+                [-32.8894155, -68.8446177],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_c5cee25d2b73c53845a362fd66ae5285 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e3e3a0f2195d537a6ccf9edf048d5b8b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_82826c990f295b442be75030a382d586 = $(`<div id="html_82826c990f295b442be75030a382d586" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #9</h4>                 <b>Dirección:</b> Mendoza<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $800,000<br>                 <b>Habitaciones:</b> 4<br>                 <b>Área:</b> 80 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">2.73 km</span>             </div>             </div>`)[0];
+                popup_e3e3a0f2195d537a6ccf9edf048d5b8b.setContent(html_82826c990f295b442be75030a382d586);
+            
+        
+
+        marker_56b2014272a1038df7b459aebd58d0e3.bindPopup(popup_e3e3a0f2195d537a6ccf9edf048d5b8b)
+        ;
+
+        
+    
+    
+            marker_56b2014272a1038df7b459aebd58d0e3.bindTooltip(
+                `<div>
+                     Propiedad #9 - 2.73km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_56b2014272a1038df7b459aebd58d0e3.setIcon(icon_c5cee25d2b73c53845a362fd66ae5285);
+            
+    
+            var marker_2489235f9eb6ed3dda17b1ce7f4f5c76 = L.marker(
+                [-32.8894155, -68.8446177],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_56fe06662c10ea8a2a90cc0525c77d95 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6305303d3401ab2d8028cbaf6e8d1be3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b29f7335c66f0e64fc47a18d0a123c26 = $(`<div id="html_b29f7335c66f0e64fc47a18d0a123c26" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #10</h4>                 <b>Dirección:</b> Mendoza<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $770,000<br>                 <b>Habitaciones:</b> 2<br>                 <b>Área:</b> 95 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">2.73 km</span>             </div>             </div>`)[0];
+                popup_6305303d3401ab2d8028cbaf6e8d1be3.setContent(html_b29f7335c66f0e64fc47a18d0a123c26);
+            
+        
+
+        marker_2489235f9eb6ed3dda17b1ce7f4f5c76.bindPopup(popup_6305303d3401ab2d8028cbaf6e8d1be3)
+        ;
+
+        
+    
+    
+            marker_2489235f9eb6ed3dda17b1ce7f4f5c76.bindTooltip(
+                `<div>
+                     Propiedad #10 - 2.73km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2489235f9eb6ed3dda17b1ce7f4f5c76.setIcon(icon_56fe06662c10ea8a2a90cc0525c77d95);
+            
+    
+            var marker_b41b6fd30db2843273a048fd52d982c9 = L.marker(
+                [-32.8894155, -68.8446177],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_430f40a82529c06e3a01a11bbd356672 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_75c15b098574325e1fc8c427eee2cd41 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6463f3a1744da28382534e8635bf3fe8 = $(`<div id="html_6463f3a1744da28382534e8635bf3fe8" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #11</h4>                 <b>Dirección:</b> Mendoza<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $400,000<br>                 <b>Habitaciones:</b> 2<br>                 <b>Área:</b> 30 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">2.73 km</span>             </div>             </div>`)[0];
+                popup_75c15b098574325e1fc8c427eee2cd41.setContent(html_6463f3a1744da28382534e8635bf3fe8);
+            
+        
+
+        marker_b41b6fd30db2843273a048fd52d982c9.bindPopup(popup_75c15b098574325e1fc8c427eee2cd41)
+        ;
+
+        
+    
+    
+            marker_b41b6fd30db2843273a048fd52d982c9.bindTooltip(
+                `<div>
+                     Propiedad #11 - 2.73km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b41b6fd30db2843273a048fd52d982c9.setIcon(icon_430f40a82529c06e3a01a11bbd356672);
+            
+    
+            var marker_3dd04191779ae94fb36206de36e3bb29 = L.marker(
+                [-32.8894155, -68.8446177],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_6b342a71023ab09b8bfad2db7c89348d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_17378190e2952e0047ea7d4026c61894 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_75fa1c76d38c2485fb8ab5cb22d9b22e = $(`<div id="html_75fa1c76d38c2485fb8ab5cb22d9b22e" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #12</h4>                 <b>Dirección:</b> Mendoza<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $270,000<br>                 <b>Habitaciones:</b> 1<br>                 <b>Área:</b> 25 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">2.73 km</span>             </div>             </div>`)[0];
+                popup_17378190e2952e0047ea7d4026c61894.setContent(html_75fa1c76d38c2485fb8ab5cb22d9b22e);
+            
+        
+
+        marker_3dd04191779ae94fb36206de36e3bb29.bindPopup(popup_17378190e2952e0047ea7d4026c61894)
+        ;
+
+        
+    
+    
+            marker_3dd04191779ae94fb36206de36e3bb29.bindTooltip(
+                `<div>
+                     Propiedad #12 - 2.73km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3dd04191779ae94fb36206de36e3bb29.setIcon(icon_6b342a71023ab09b8bfad2db7c89348d);
+            
+    
+            var marker_cecef10d289759fc983be186a2f584ec = L.marker(
+                [-32.8894155, -68.8446177],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_ef5c362d0101add514dac1bccc27f3a2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1166f30b87d42600cd8907867baff6e8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_56a1e6a822172dc24e506534e7e1173a = $(`<div id="html_56a1e6a822172dc24e506534e7e1173a" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #13</h4>                 <b>Dirección:</b> Mendoza<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $670,725<br>                 <b>Habitaciones:</b> 3<br>                 <b>Área:</b> 45 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">2.73 km</span>             </div>             </div>`)[0];
+                popup_1166f30b87d42600cd8907867baff6e8.setContent(html_56a1e6a822172dc24e506534e7e1173a);
+            
+        
+
+        marker_cecef10d289759fc983be186a2f584ec.bindPopup(popup_1166f30b87d42600cd8907867baff6e8)
+        ;
+
+        
+    
+    
+            marker_cecef10d289759fc983be186a2f584ec.bindTooltip(
+                `<div>
+                     Propiedad #13 - 2.73km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cecef10d289759fc983be186a2f584ec.setIcon(icon_ef5c362d0101add514dac1bccc27f3a2);
+            
+    
+            var marker_d64502fee20cea373938526820774bc5 = L.marker(
+                [-32.8894155, -68.8446177],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_cb3d7366ecf3133041fc91a54806ef86 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9be494066410479b514eb3a739cd35f8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7b0697a78f7ac3ae534bffb6dc041945 = $(`<div id="html_7b0697a78f7ac3ae534bffb6dc041945" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #14</h4>                 <b>Dirección:</b> Mendoza<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $520,000<br>                 <b>Habitaciones:</b> 5<br>                 <b>Área:</b> 120 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">2.73 km</span>             </div>             </div>`)[0];
+                popup_9be494066410479b514eb3a739cd35f8.setContent(html_7b0697a78f7ac3ae534bffb6dc041945);
+            
+        
+
+        marker_d64502fee20cea373938526820774bc5.bindPopup(popup_9be494066410479b514eb3a739cd35f8)
+        ;
+
+        
+    
+    
+            marker_d64502fee20cea373938526820774bc5.bindTooltip(
+                `<div>
+                     Propiedad #14 - 2.73km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d64502fee20cea373938526820774bc5.setIcon(icon_cb3d7366ecf3133041fc91a54806ef86);
+            
+    
+            var marker_329b0de8f3fb15cf014d2fc7f29e0f7a = L.marker(
+                [-32.8894155, -68.8446177],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_3ea9c8730b8de26ee43ff9987df92e10 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2effbbb5f15ea0a4f33ec789a077726c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_17e9cd2bcecca5a9b053fa3df883d73d = $(`<div id="html_17e9cd2bcecca5a9b053fa3df883d73d" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #15</h4>                 <b>Dirección:</b> Mendoza<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $350,000<br>                 <b>Habitaciones:</b> 2<br>                 <b>Área:</b> 33 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">2.73 km</span>             </div>             </div>`)[0];
+                popup_2effbbb5f15ea0a4f33ec789a077726c.setContent(html_17e9cd2bcecca5a9b053fa3df883d73d);
+            
+        
+
+        marker_329b0de8f3fb15cf014d2fc7f29e0f7a.bindPopup(popup_2effbbb5f15ea0a4f33ec789a077726c)
+        ;
+
+        
+    
+    
+            marker_329b0de8f3fb15cf014d2fc7f29e0f7a.bindTooltip(
+                `<div>
+                     Propiedad #15 - 2.73km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_329b0de8f3fb15cf014d2fc7f29e0f7a.setIcon(icon_3ea9c8730b8de26ee43ff9987df92e10);
+            
+    
+            var marker_19e3585fd3cb8dc4eb16299ebb588f3e = L.marker(
+                [-32.8894155, -68.8446177],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_17ff639a2c92c297cedb4342d14839fd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d2818589a944531c3fdf18012a7c5b02 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8ec8230c4573ceb24314d54861c86ab5 = $(`<div id="html_8ec8230c4573ceb24314d54861c86ab5" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #16</h4>                 <b>Dirección:</b> Mendoza<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $1,043,350<br>                 <b>Habitaciones:</b> 3<br>                 <b>Área:</b> 68 m²<br>                 <b>📏 Distancia:</b> <span style="color: blue; font-weight: bold;">2.73 km</span>             </div>             </div>`)[0];
+                popup_d2818589a944531c3fdf18012a7c5b02.setContent(html_8ec8230c4573ceb24314d54861c86ab5);
+            
+        
+
+        marker_19e3585fd3cb8dc4eb16299ebb588f3e.bindPopup(popup_d2818589a944531c3fdf18012a7c5b02)
+        ;
+
+        
+    
+    
+            marker_19e3585fd3cb8dc4eb16299ebb588f3e.bindTooltip(
+                `<div>
+                     Propiedad #16 - 2.73km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_19e3585fd3cb8dc4eb16299ebb588f3e.setIcon(icon_17ff639a2c92c297cedb4342d14839fd);
+            
+    
+            var marker_8b445944c43969d2143e9ceb0c31b705 = L.marker(
+                [-32.8817489, -68.8433879],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_71ee67432e7ca57230b48dcefda4d5c8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1cd1bb8eaed62b828b89070178362447 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_215400f6f2964120731c270ce4125e60 = $(`<div id="html_215400f6f2964120731c270ce4125e60" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #17</h4>                 <b>Dirección:</b> Cuarta Sección<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $2,500,000<br>                 <b>Habitaciones:</b> 2<br>                 <b>Área:</b> 338 m²<br>                 <b>📏 Distancia:</b> <span style="color: orange; font-weight: bold;">3.04 km</span>             </div>             </div>`)[0];
+                popup_1cd1bb8eaed62b828b89070178362447.setContent(html_215400f6f2964120731c270ce4125e60);
+            
+        
+
+        marker_8b445944c43969d2143e9ceb0c31b705.bindPopup(popup_1cd1bb8eaed62b828b89070178362447)
+        ;
+
+        
+    
+    
+            marker_8b445944c43969d2143e9ceb0c31b705.bindTooltip(
+                `<div>
+                     Propiedad #17 - 3.04km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8b445944c43969d2143e9ceb0c31b705.setIcon(icon_71ee67432e7ca57230b48dcefda4d5c8);
+            
+    
+            var marker_6b08119e32767bde88bc87560f8efbf7 = L.marker(
+                [-32.8817489, -68.8433879],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_8241af76c2e40162dc4a101abd2d8dcb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1df82ae11478c80c64fe8b9d08220a1b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_36c30867e8eb7bba706e14b025bbf2ae = $(`<div id="html_36c30867e8eb7bba706e14b025bbf2ae" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #18</h4>                 <b>Dirección:</b> Cuarta Sección<br>                 <b>Ciudad:</b> Capital<br>                 <b>Precio:</b> $480,000<br>                 <b>Habitaciones:</b> 5<br>                 <b>Área:</b> 55 m²<br>                 <b>📏 Distancia:</b> <span style="color: orange; font-weight: bold;">3.04 km</span>             </div>             </div>`)[0];
+                popup_1df82ae11478c80c64fe8b9d08220a1b.setContent(html_36c30867e8eb7bba706e14b025bbf2ae);
+            
+        
+
+        marker_6b08119e32767bde88bc87560f8efbf7.bindPopup(popup_1df82ae11478c80c64fe8b9d08220a1b)
+        ;
+
+        
+    
+    
+            marker_6b08119e32767bde88bc87560f8efbf7.bindTooltip(
+                `<div>
+                     Propiedad #18 - 3.04km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6b08119e32767bde88bc87560f8efbf7.setIcon(icon_8241af76c2e40162dc4a101abd2d8dcb);
+            
+    
+            var marker_ad6b426da538f2103352a13b5a43a751 = L.marker(
+                [-32.8587435, -68.907318],
+                {
+}
+            ).addTo(map_04dbc7f27afae08c4d4842aa5a9d22ba);
+        
+    
+            var icon_e62e8c9a100aba1a5c4dbf292ce26ad2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "building",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7c384535f2a09f115e9c27ea09afa892 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9c6c2c89bf43954288ad2b9cc6acc066 = $(`<div id="html_9c6c2c89bf43954288ad2b9cc6acc066" style="width: 100.0%; height: 100.0%;">             <div style="width: 250px;">                 <h4 style="margin: 0 0 10px 0;">🏠 Propiedad #19</h4>                 <b>Dirección:</b> El Challao<br>                 <b>Ciudad:</b> Las Heras<br>                 <b>Precio:</b> $800,000<br>                 <b>Habitaciones:</b> 2<br>                 <b>Área:</b> 210 m²<br>                 <b>📏 Distancia:</b> <span style="color: orange; font-weight: bold;">4.82 km</span>             </div>             </div>`)[0];
+                popup_7c384535f2a09f115e9c27ea09afa892.setContent(html_9c6c2c89bf43954288ad2b9cc6acc066);
+            
+        
+
+        marker_ad6b426da538f2103352a13b5a43a751.bindPopup(popup_7c384535f2a09f115e9c27ea09afa892)
+        ;
+
+        
+    
+    
+            marker_ad6b426da538f2103352a13b5a43a751.bindTooltip(
+                `<div>
+                     Propiedad #19 - 4.82km
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ad6b426da538f2103352a13b5a43a751.setIcon(icon_e62e8c9a100aba1a5c4dbf292ce26ad2);
+            
+</script>
+</html>

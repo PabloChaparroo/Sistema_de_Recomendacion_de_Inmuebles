@@ -1,0 +1,290 @@
+{
+  "0": {
+    "ubicacion": "33 Orientales, Godoy Cruz, Mendoza",
+    "lat": -32.9281592,
+    "lon": -68.846801,
+    "precio": 550000.0,
+    "habitaciones": 1,
+    "ambientes": 2,
+    "tipo": "Departamento"
+  },
+  "1": {
+    "ubicacion": "Almirante Brown 500, General San Martín, Mendoza",
+    "lat": -33.0770573,
+    "lon": -68.4710111,
+    "precio": 1500000.0,
+    "habitaciones": 0,
+    "ambientes": 1,
+    "tipo": "Casa"
+  },
+  "2": {
+    "ubicacion": "Garibaldi 100, Ciudad de Mendoza, Mendoza",
+    "lat": -32.8908937,
+    "lon": -68.8369228,
+    "precio": 450000.0,
+    "habitaciones": 0,
+    "ambientes": 1,
+    "tipo": "Departamento"
+  },
+  "5": {
+    "ubicacion": "Darragueira al 6800, Chacras de Coria, Mendoza",
+    "lat": -32.9680456,
+    "lon": -68.873464,
+    "precio": 1500000.0,
+    "habitaciones": 0,
+    "ambientes": 1,
+    "tipo": "Casa"
+  },
+  "6": {
+    "ubicacion": "San Martin 1074, Ciudad de Mendoza, Ciudad de Mendoza, Mendoza",
+    "lat": -32.8910283,
+    "lon": -68.8396067,
+    "precio": 400000.0,
+    "habitaciones": 1,
+    "ambientes": 2,
+    "tipo": "Departamento"
+  },
+  "9": {
+    "ubicacion": "A Maure , Godoy Cruz, Mendoza",
+    "lat": -32.9189516,
+    "lon": -68.839604,
+    "precio": 550000.0,
+    "habitaciones": 2,
+    "ambientes": 4,
+    "tipo": "Casa"
+  },
+  "10": {
+    "ubicacion": "Buenos vecinos 2848, Los Corralitos, Mendoza",
+    "lat": -32.9029982,
+    "lon": -68.7313231,
+    "precio": 580000.0,
+    "habitaciones": 2,
+    "ambientes": 3,
+    "tipo": "Departamento"
+  },
+  "11": {
+    "ubicacion": "Colon 412- Ciudad, Ciudad de Mendoza, Mendoza",
+    "lat": -32.8940845,
+    "lon": -68.8461015,
+    "precio": 500000.0,
+    "habitaciones": 2,
+    "ambientes": 1,
+    "tipo": "Casa"
+  },
+  "12": {
+    "ubicacion": "Lisandro de La Torre 282, Ciudad de Mendoza, Mendoza",
+    "lat": -32.9008948,
+    "lon": -68.8392209,
+    "precio": 300000.0,
+    "habitaciones": 1,
+    "ambientes": 2,
+    "tipo": "Departamento"
+  },
+  "13": {
+    "ubicacion": "GUARDIA VIEJA 777, Vistalba, Mendoza",
+    "lat": -33.0315272,
+    "lon": -68.9083855,
+    "precio": 2235750.0,
+    "habitaciones": 4,
+    "ambientes": 6,
+    "tipo": "Casa"
+  },
+  "14": {
+    "ubicacion": "Rodriguez Peña 2260, Godoy Cruz, Mendoza",
+    "lat": -32.9399688,
+    "lon": -68.8263551,
+    "precio": 0,
+    "habitaciones": 0,
+    "ambientes": 1,
+    "tipo": "Casa"
+  },
+  "15": {
+    "ubicacion": "Laprida 300, Luján de Cuyo, Mendoza",
+    "lat": -32.9640805,
+    "lon": -68.8687876,
+    "precio": 2235750.0,
+    "habitaciones": 3,
+    "ambientes": 4,
+    "tipo": "Casa"
+  },
+  "19": {
+    "ubicacion": "Bariloche 2976, Las Heras, Mendoza",
+    "lat": -32.8382071,
+    "lon": -68.8704042,
+    "precio": 380000.0,
+    "habitaciones": 2,
+    "ambientes": 3,
+    "tipo": "Departamento"
+  },
+  "20": {
+    "ubicacion": "Pueyrredón , Gobernador Benegas, Mendoza",
+    "lat": -32.9420656,
+    "lon": -68.8495598,
+    "precio": 450.0,
+    "habitaciones": 2,
+    "ambientes": 3,
+    "tipo": "Departamento"
+  },
+  "22": {
+    "ubicacion": "BELGRANO N° 72, Maipú, Mendoza",
+    "lat": -32.9897883,
+    "lon": -68.723924,
+    "precio": 620000.0,
+    "habitaciones": 0,
+    "ambientes": 3,
+    "tipo": "Departamento"
+  },
+  "23": {
+    "ubicacion": "Avenida San Martín 2700, Ciudad de Mendoza, Mendoza",
+    "lat": -32.8714867,
+    "lon": -68.8345089,
+    "precio": 0,
+    "habitaciones": 0,
+    "ambientes": 1,
+    "tipo": "Casa"
+  },
+  "25": {
+    "ubicacion": "Republica del Líbano 1431 ,Bº Los Constituyentes. Godoy Cruz, Godoy Cruz, Mendoza",
+    "lat": -32.9416156,
+    "lon": -68.8426744,
+    "precio": 500000.0,
+    "habitaciones": 2,
+    "ambientes": 3,
+    "tipo": "Departamento"
+  },
+  "27": {
+    "ubicacion": "Barrio Nuevo Siglo, Coquimbito, Maipú, Coquimbito, Maipú",
+    "lat": -33.0010645,
+    "lon": -68.7617041,
+    "precio": 500000.0,
+    "habitaciones": 2,
+    "ambientes": 3,
+    "tipo": "Departamento"
+  },
+  "28": {
+    "ubicacion": "Av. San Martin 90, Ciudad de Mendoza, Mendoza",
+    "lat": -32.9027107,
+    "lon": -68.8426868,
+    "precio": 2700000.0,
+    "habitaciones": 0,
+    "ambientes": 3,
+    "tipo": "Departamento"
+  },
+  "31": {
+    "ubicacion": "Republica del Libano, Luján de Cuyo, Mendoza",
+    "lat": -33.0390188,
+    "lon": -68.8859402,
+    "precio": 400000.0,
+    "habitaciones": 1,
+    "ambientes": 3,
+    "tipo": "Departamento"
+  },
+  "32": {
+    "ubicacion": "DIQUE CIPOLLETTI, Luján de Cuyo, Mendoza",
+    "lat": -33.0509783,
+    "lon": -68.9388484,
+    "precio": 490000.0,
+    "habitaciones": 0,
+    "ambientes": 3,
+    "tipo": "Departamento"
+  },
+  "33": {
+    "ubicacion": "Teurlay 727, Villa Nueva, Mendoza",
+    "lat": -32.9085696,
+    "lon": -68.8023291,
+    "precio": 900000.0,
+    "habitaciones": 2,
+    "ambientes": 7,
+    "tipo": "Casa"
+  },
+  "34": {
+    "ubicacion": "Juan Agustín Maza 776, Maipú, Mendoza",
+    "lat": -32.9773494,
+    "lon": -68.7965225,
+    "precio": 700000.0,
+    "habitaciones": 2,
+    "ambientes": 3,
+    "tipo": "Departamento"
+  },
+  "36": {
+    "ubicacion": "San Martin, Maipú, Mendoza",
+    "lat": -32.9836996,
+    "lon": -68.7895338,
+    "precio": 400000.0,
+    "habitaciones": 1,
+    "ambientes": 2,
+    "tipo": "Departamento"
+  },
+  "37": {
+    "ubicacion": "Av. Godoy Cruz, Ciudad de Mendoza, Mendoza",
+    "lat": -32.8823626,
+    "lon": -68.8473296,
+    "precio": 1000000.0,
+    "habitaciones": 3,
+    "ambientes": 1,
+    "tipo": "Casa"
+  },
+  "39": {
+    "ubicacion": "Regalado Olguin S/N, Villa Catalina, Las Heras, Mendoza",
+    "lat": -32.8534748,
+    "lon": -68.8655718,
+    "precio": 96882500.0,
+    "habitaciones": 1,
+    "ambientes": 2,
+    "tipo": "Departamento"
+  },
+  "41": {
+    "ubicacion": "Alpatacal 2900, Ciudad de Mendoza, Mendoza",
+    "lat": -32.8688378,
+    "lon": -68.8537513,
+    "precio": 2235750.0,
+    "habitaciones": 5,
+    "ambientes": 10,
+    "tipo": "Casa"
+  },
+  "44": {
+    "ubicacion": "Avenida Champagnat 0, El Challao, Mendoza",
+    "lat": -32.8657638,
+    "lon": -68.8832238,
+    "precio": 894300.0,
+    "habitaciones": 2,
+    "ambientes": 3,
+    "tipo": "Departamento"
+  },
+  "45": {
+    "ubicacion": "Milagros 1591, M5525 Rodeo de la Cruz, Mendoza, Rodeo de la Cruz, Mendoza",
+    "lat": -32.8980059,
+    "lon": -68.7159434,
+    "precio": 1000000.0,
+    "habitaciones": 4,
+    "ambientes": 6,
+    "tipo": "Casa"
+  },
+  "46": {
+    "ubicacion": "Dorrego al 1100, Dorrego, Mendoza",
+    "lat": -32.9101213,
+    "lon": -68.8288537,
+    "precio": 630000.0,
+    "habitaciones": 2,
+    "ambientes": 3,
+    "tipo": "Departamento"
+  },
+  "48": {
+    "ubicacion": "Lisandro De la Torre 324, Godoy Cruz, Mendoza",
+    "lat": -32.910515,
+    "lon": -68.8401955,
+    "precio": 0,
+    "habitaciones": 2,
+    "ambientes": 3,
+    "tipo": "Departamento"
+  },
+  "49": {
+    "ubicacion": "9 DE Julio 2213 Ciudad DE Mendoza, Ciudad de Mendoza, Mendoza",
+    "lat": -32.8772545,
+    "lon": -68.8371366,
+    "precio": 610000.0,
+    "habitaciones": 3,
+    "ambientes": 5,
+    "tipo": "Casa"
+  }
+}
